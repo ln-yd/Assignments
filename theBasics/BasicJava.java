@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class BasicJava{
     // 1. Print 1-255
@@ -79,17 +81,99 @@ public class BasicJava{
         // Write a method that creates an array 'y' that contains all the 
         // odd numbers between 1 to 255. When the method is done, 'y' 
         // should have the value of [1, 3, 5, 7, ... 255].
-    public static void oddNumbers(){
-        ArrayList<Integer> y = new ArrayList<Integer>();
-        for(int i=1; i<=255; i+=2){
-            y.add(i);
+        public static void oddNumbers(){
+            ArrayList<Integer> y = new ArrayList<Integer>();
+            for(int i=1; i<=255; i+=2){
+                y.add(i);
+                
+            }
+            System.out.println(y);
             
         }
-        System.out.println(y);
+        // #8 Greater Than Y
+        // Write a method that takes an array 
+        // and returns the number of values in that array whose value is greater than a given value y.
+        //  For example, if array = [1, 3, 5, 7] and y = 3,
+        //  after your method is run it will print 2 (since there are two values in the array that are greater than 3).
+        public static void greaterThanY(int[] y, int z){
+            int greater = z;
+            for(int i=1; i<y.length; i++){
+                if(y[i] > greater){
+                    greater=y[i];
+                }
+            }
+            System.out.println(greater);
+        }
         
-    }
+        // #9 Square the values
+        // Given any array x, say [1, 5, 10, -2],
+        //  write a method that multiplies each value in the array by itself.
+        //   When the method is done, the array x should have values that have been squared, say [1, 25, 100, 4].
+        public static void square(int[] x){
+            int temp=0;
+            for(int i=0; i<x.length; i++){
+                temp = x[i]*x[i];
+                x[i]=temp;
+            }
+            System.out.println(Arrays.toString(x));
+        }
+        // #10 Eliminate Negative Numbers
+        // Given any array x, say [1, 5, 10, -2],
+        //  write a method that replaces any negative number with the value of 0.
+        //   When the method is done, x should have no negative values, say [1, 5, 10, 0].
+        public static void negativeNum(int[] x){
+            for(int i=0; i<x.length; i++){
+                if(x[i]<0){
+                    x[i]=0;
+                }
+                System.out.println(Arrays.toString(x));
+            }
+        }
+        
+        // #11 Max, Min, and Average
+        // Given any array x, say [1, 5, 10, -2],
+        //  write a method that returns an array with the maximum number in the array
+        //  , the minimum value in the array, and the average of the values in the array.
+        //   The returned array should be three elements long and contain: [MAXNUM, MINNUM, AVG]
+        // Assumption: array arr is not empty
+        public static double[] minMaxAverage(int[] arr){
+            int min= arr[0];
+            int max= arr[0];
+            int sum= 0;
+            for(int i=0; i<arr.length; i++){
+                if(arr[i]<min){
+                    min=arr[i];
+                } 
+                if (arr[i]>max) {
+                    max=arr[i];
+                }
+                sum=sum+arr[i];   
+                              
+            }
+            double ave= (double)sum/arr.length;
+            System.out.println(ave);                
 
-    public static void main(String[] args) {
+            double[] resultArray = new double[] {max, min, ave};
+            System.out.println(Arrays.toString(resultArray));
+            return(resultArray);
+        }
+        // #12 Shifting the Values in the Array
+        // Given any array x, say [1, 5, 10, 7, -2], 
+        // write a method that shifts each number by one to the front. 
+        // For example, when the method is done, an x of [1, 5, 10, 7, -2] should become [5, 10, 7, -2, 0].
+        //  Notice that the last number is 0. The method does not need to wrap around the values shifted out of bounds.
+        public static void shiftArr(int[] x){
+            int holdOne=x[0];
+            int holdTwo=x[1];
+            for(int i=1; i<x.length;i++){
+                x[i-1]=x[i];
+                System.out.println(Arrays.toString(x));
+            }
+            x[x.length-1]=0;
+            System.out.println(Arrays.toString(x));
+        }
+        
+        public static void main(String[] args) {
         // System.out.println("HELLO");
         // print1To255();
         // printOdd1To255();
@@ -97,8 +181,20 @@ public class BasicJava{
         // iterateArr(new int[]{1,3,5,7,9,13});
         // findMax(new int[] {});
         // average(new int[] {1,4,-4,6,0,7});
-        oddNumbers();
+        // oddNumbers();
+        // greaterThanY(new int[] {1, 3, 5, 7},3);
+        // square(new int[] {1, 25, 100, 4, 4,6}); 
+        // negativeNum(new int[] {1,5,10,-2});
+        // minMaxAverage(new int[] {1, 5, 10, -2});
+        int[] theArr = new int[] {1, 5, 10, 7, -2};
+        System.out.println("Before: " + Arrays.toString(theArr));
+        shiftArr(theArr);
+        System.out.println("After: " + Arrays.toString(theArr)); // Original array is modified!
     }
 
 
 }
+
+
+
+
